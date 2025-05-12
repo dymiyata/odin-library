@@ -11,8 +11,16 @@
 <body>
     <button id="new-book-button">+ New Book</button>
     <dialog id="new-book-dialog">
-        <p>This is a dialog box!</p>
-        <button id="close-dialog">Close</button>
+        <form>
+            <label for="ftitle">Title:</label>
+            <input type="text" id="ftitle" name="ftitle" value="">
+            <label for="fauthor">Author:</label>
+            <input type="text" id="fauthor" name="fauthor" value="">
+            <label for="fread">Read:</label>
+            <input type="checkbox" name="fread" id="fread">
+            <input type="button" value="Submit" id="fsubmit">
+        </form>
+        <button id="close-dialog">cancel</button>
     </dialog>
     <table>
         <thead>
