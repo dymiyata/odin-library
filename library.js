@@ -27,8 +27,13 @@ function generateTableRow(book) {
     trElement.appendChild(readCell);
     titleCellElement.innerText = book.title;
     authorCellElement.innerText = book.author;
-    readCell.innerText = book.read ? "read" : "not read";
     tbodyElement.append(trElement);
+
+    const readButton = document.createElement("button");
+    readCell.appendChild(readButton);
+    readButton.setAttribute("class", "read-button");
+    readButton.innerText = book.read ? "read" : "not read";
+    readButton.addEventListener("click", () => changeReadStatus(readButton, book.id));
 
 
     const buttonCell = document.createElement("td");
@@ -38,6 +43,17 @@ function generateTableRow(book) {
     trElement.appendChild(buttonCell);
     buttonCell.appendChild(removeButton);
     removeButton.addEventListener("click", () => deleteCurrentBook(book.id));
+}
+
+function changeReadStatus(button, bookId) {
+    let readStatus = true;
+    myLibrary.forEach(book => {
+        if (book.id === bookId) {
+            book.read = !book.read;
+            readStatus = book.read;
+        }
+    });
+    button.innerText = readStatus ? "read" : "not read";
 }
 
 function deleteCurrentBook(bookId) {
